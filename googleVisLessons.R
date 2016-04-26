@@ -66,8 +66,31 @@ tail(development_complete)
 development_motion <- subset(development_complete, Country %in% selection)
 
 #
-# Lesson 4 : first googleVis plot
+# Lesson 4-5
 #
 library(googleVis)
+
+motion_graph <- gvisMotionChart(development_motion,
+                                idvar = "Country",
+                                timevar = "Year",
+                                xvar = "GDP",
+                                yvar = "LifeExpectancy",
+                                sizevar = "Population")
+
+# Plot motion_graph
+plot(motion_graph)
+
+development_motion$logGDP <- log(development_motion$GDP)
+motion_graph <- gvisMotionChart(development_motion,
+                                idvar = "Country",
+                                timevar = "Year",
+                                xvar = "logGDP",
+                                yvar = "LifeExpectancy",
+                                sizevar = "Population")
+
+# Plot motion_graph
+plot(motion_graph)
+
+
 
 
